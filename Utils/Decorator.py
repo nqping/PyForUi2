@@ -9,8 +9,8 @@ import time
 from functools import wraps
 
 from PageObject.BasePage import BasePage
-from Utils import Log
-from Utils import ReportPath
+from Utils.Log import Log
+from Utils.ReportPath import ReportPath
 
 flag = 'IMAGE:'
 log = Log()

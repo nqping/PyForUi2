@@ -166,11 +166,11 @@ class Template_mixin(object):
     <title>%(title)s</title>
     <meta name="generator" content="%(generator)s"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../Utils/theme/bootstrap.min.css" rel="stylesheet">
-    <script src="../Utils/theme/jquery-3.2.1.min.js"></script>
-    <script src="../Utils/theme/bootstrap.min.js"></script>
-    <script src="../Utils/theme/highcharts.js"></script>
-    <script src="../Utils/theme/exporting.js"></script>
+    <link href="../../Utils/theme/bootstrap.min.css" rel="stylesheet">
+    <script src="../../Utils/theme/jquery-3.2.1.min.js"></script>
+    <script src="../../Utils/theme/bootstrap.min.js"></script>
+    <script src="../../Utils/theme/highcharts.js"></script>
+    <script src="../../Utils/theme/exporting.js"></script>
 
 
 
