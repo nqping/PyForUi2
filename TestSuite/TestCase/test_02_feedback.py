@@ -12,17 +12,16 @@ from Utils.Decorator import *
 
 
 class TestFeedback(unittest.TestCase,BasePage):
-
     @classmethod
     @setupclass
     def setUpClass(cls):
-        pass
-        # cls.d.app_start("com.tcl.joylockscreen")
+        cls.d.app_start("com.tcl.joylockscreen")
+        # pass
 
     @classmethod
     @teardownclass
     def tearDownClass(cls):
-        pass
+        cls.d.app_stop("com.tcl.joylockscreen")
 
     @testcase
     def test_01_submitFeedback(self):

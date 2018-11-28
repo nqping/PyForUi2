@@ -21,7 +21,7 @@ class TestScreenLock(unittest.TestCase,BasePage):
     @classmethod
     @teardownclass
     def tearDownClass(cls):
-        pass
+        cls.d.app_stop("com.tcl.joylockscreen")
 
     @teststep
     def test_01_setPattern(self):
