@@ -151,13 +151,18 @@ class Template_mixin(object):
 
     # ------------------------------------------------------------------------
     # HTML Template
-
+    # < link
+    # href = "../../theme/bootstrap.min.css"
+    # rel = "stylesheet" >
+    # < script
+    # src = "../../theme/jquery-3.2.1.min.js" > < / script >
+    # < script
+    # src = "../../theme/bootstrap.min.js" > < / script >
+    # < script
+    # src = "../../theme/highcharts.js" > < / script >
+    # < script
+    # src = "../../theme/exporting.js" > < / script >
     #线上css
-    # < link href = "http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel = "stylesheet" >
-    # < script src = "http://libs.baidu.com/jquery/2.0.0/jquery.min.js" > < / script >
-    # < script src = "http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js" > < / script >
-    # < script src = "https://img.hcharts.cn/highcharts/highcharts.js" > < / script >
-    # < script src = "https://img.hcharts.cn/highcharts/modules/exporting.js" > < / script >
 
     HTML_TMPL = r"""<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -166,11 +171,14 @@ class Template_mixin(object):
     <title>%(title)s</title>
     <meta name="generator" content="%(generator)s"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../theme/bootstrap.min.css" rel="stylesheet">
-    <script src="../../theme/jquery-3.2.1.min.js"></script>
-    <script src="../../theme/bootstrap.min.js"></script>
-    <script src="../../theme/highcharts.js"></script>
-    <script src="../../theme/exporting.js"></script>
+
+    <link href = "http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel = "stylesheet">
+    <script src = "http://libs.baidu.com/jquery/2.0.0/jquery.min.js"> </ script>
+    <script src = "http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js" > </script>
+    <script src = "https://img.hcharts.cn/highcharts/highcharts.js"> </script>
+    <script src = "https://img.hcharts.cn/highcharts/modules/exporting.js"> </script>
+
+
 
 
 
