@@ -1,0 +1,36 @@
+2018-11-29 10:22:30,483 - 6039Y - INFO - udid: a96cd66d-3c:cb:7c:f4:b1:98-6039Y
+2018-11-29 10:22:33,096 - 6039Y - INFO - --> TestScreenLock.setUpClass
+2018-11-29 10:22:34,288 - 6039Y - INFO - <-- TestScreenLock.setUpClass, Success
+
+2018-11-29 10:22:34,288 - 6039Y - INFO - 	--> TestScreenLock.test_01_setPattern
+2018-11-29 10:22:34,289 - 6039Y - INFO - 	--> ScreenLockPage.screenLock_click
+2018-11-29 10:22:37,463 - 6039Y - INFO - 	--> ScreenLockPage.pattern_click
+2018-11-29 10:22:39,030 - 6039Y - INFO - 	--> ScreenLockPage.draw_pattern
+2018-11-29 10:22:47,787 - 6039Y - INFO - 	--> ScreenLockPage.screen_on_off
+2018-11-29 10:22:48,508 - 6039Y - INFO - 	--> ScreenLockPage.screen_swipe_up
+2018-11-29 10:22:50,008 - 6039Y - INFO - 	--> ScreenLockPage.unlock_pattern
+2018-11-29 10:22:50,257 - 6039Y - ERROR - Exception, 'type' object is not subscriptable
+2018-11-29 10:22:50,257 - 6039Y - ERROR - 	<-- ScreenLockPage.unlock_pattern, Exception, Error
+2018-11-29 10:22:50,781 - 6039Y - ERROR - Exception, IMAGE:ScreenLockPage.unlock_pattern-20181129102250.PNG
+2018-11-29 10:22:50,781 - 6039Y - ERROR - 	<-- TestScreenLock.test_01_setPattern, Exception, Error
+2018-11-29 10:22:50,823 - 6039Y - INFO - 	--> TestScreenLock.test_02_setPin
+2018-11-29 10:22:50,824 - 6039Y - INFO - 	--> ScreenLockPage.screenLock_click
+2018-11-29 10:23:02,104 - 6039Y - ERROR - Exception, -32001 Jsonrpc error: <android.support.test.uiautomator.UiObjectNotFoundException> data: UiSelector[SCROLLABLE=true]
+2018-11-29 10:23:02,105 - 6039Y - ERROR - 	<-- ScreenLockPage.screenLock_click, Exception, Error
+2018-11-29 10:23:02,514 - 6039Y - ERROR - Exception, IMAGE:ScreenLockPage.screenLock_click-20181129102302.PNG
+2018-11-29 10:23:02,514 - 6039Y - ERROR - 	<-- TestScreenLock.test_02_setPin, Exception, Error
+2018-11-29 10:23:02,578 - 6039Y - INFO - --> TestScreenLock.tearDownClass
+2018-11-29 10:23:04,034 - 6039Y - INFO - <-- TestScreenLock.tearDownClass, Success
+
+2018-11-29 10:23:04,035 - 6039Y - INFO - --> TestFeedback.setUpClass
+2018-11-29 10:23:05,388 - 6039Y - INFO - <-- TestFeedback.setUpClass, Success
+
+2018-11-29 10:23:05,389 - 6039Y - INFO - --> TestFeedback.test_01_submitFeedback
+2018-11-29 10:23:05,389 - 6039Y - INFO - 	--> FeedbackPage.feedback_click
+2018-11-29 10:23:07,211 - 6039Y - INFO - 	--> FeedbackPage.inputContent
+2018-11-29 10:23:08,989 - 6039Y - INFO - 	--> FeedbackPage.submit
+2018-11-29 10:23:10,109 - 6039Y - INFO - <-- TestFeedback.test_01_submitFeedback, Success
+
+2018-11-29 10:23:10,110 - 6039Y - INFO - --> TestFeedback.tearDownClass
+2018-11-29 10:23:11,666 - 6039Y - INFO - <-- TestFeedback.tearDownClass, Success
+
