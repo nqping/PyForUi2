@@ -47,7 +47,6 @@ class ScreenLockPage(BasePage):
 
         self.d.swipe_points(pointList,0.2)
         self.d.xpath("//android.widget.TextView[@text='Draw pattern again to confirm']").wait(timeout=10)
-        # self.d(className="android.view.ViewGroup").wait(timeout=10)
         self.d.swipe_points(pointList,0.2)
 
     @teststep
@@ -62,9 +61,9 @@ class ScreenLockPage(BasePage):
 
     @teststep
     def unlock_pattern(self,*number):
-
+        dict = {}
         pointList = []
-        # self.d.xpath("//android.view.ViewGroup/android.widget.ImageView").wait(timeout=10)
+        self.d(className="android.view.ViewGroup").wait(timeout=10)
         for elem in self.d.xpath("//android.view.ViewGroup/android.widget.ImageView").all():
             index = elem.attrib.get("index")
             position = elem.center()
