@@ -28,9 +28,12 @@ class TestScreenLock(unittest.TestCase,BasePage):
         ScreenLockPage().screenLock_click()
         ScreenLockPage().pattern_click()
         ScreenLockPage().draw_pattern(1,2,3,6,9)
+
         ScreenLockPage().screen_on_off()
         ScreenLockPage().screen_swipe_up()
         ScreenLockPage().unlock_pattern(1,2,3,6,9)
+        ele = self.d(text="Settings")
+        self.assertEqual(ele.get_text(), 'Settings')
 
     @teststep
     def test_02_setPin(self):
