@@ -669,7 +669,7 @@ table       { font-size: 100%; }
 <tr id='%(tid)s' class='%(Class)s'>
     <td class='%(style)s' style="vertical-align: middle"><div class='testcase'>%(name)s</div></td>
     <td style="vertical-align: left">%(doc)s</td>
-    <td colspan='5' align='center'><span class="label label-success success">%(status)s</span></td>
+    <td colspan='5' align='center'><h5><span class="label label-success success">%(status)s</span></h5></td>
     <td class='%(style)s' style="vertical-align: middle"></td>
 </tr>
 """  # variables: (tid, Class, style, desc, status)
