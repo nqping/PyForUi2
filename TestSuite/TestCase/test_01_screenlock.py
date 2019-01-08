@@ -45,6 +45,13 @@ class TestScreenLock(unittest.TestCase,BasePage):
         ScreenLockPage().screen_swipe_up()
         ScreenLockPage().unlock_pattern()
 
+    @teststep
+    def test_03_cleardata(self):
+        ScreenLockPage().screenLock_click()
+        ScreenLockPage().draw_pin(1, 2, 3, 6)
+        ScreenLockPage().screen_swipe_up()
+
+
 
 
 
