@@ -44,7 +44,7 @@ class Drivers:
         except AssertionError as e:
             log.e('AssertionError, %s', e)
 
-    def run(self, cases):
+    def run(self, cases,test_ip):
         # 根据method 获取android设备
         method = ReadConfig().get_method().strip()
         if method == 'SERVER':
@@ -56,7 +56,7 @@ class Drivers:
         elif method == 'IP':
             # get  devices from config devices list
             print('Checking available IP devices from config... ')
-            devices = get_devices()
+            devices = get_devices(test_ip)
             print('\nThere has %s  devices alive in config IP list' % len(devices))
         elif method == 'USB':
             # get  devices connected PC with USB

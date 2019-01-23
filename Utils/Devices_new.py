@@ -18,10 +18,11 @@ from Config.ReadConfig import ReadConfig
 from Utils import ATX_Server
 
 
-def get_devices():
+def get_devices(test_ip):
     '''get the devices from Pubilc/Config.ini devices list
     return alive devices'''
-    devices_ip = ReadConfig().get_devices_ip()
+    # devices_ip = ReadConfig().get_devices_ip()
+    devices_ip = test_ip
     print('Start check devices from Config devices IP list: %s' % devices_ip)
     pool = Pool(processes=len(devices_ip))
     tmp_list = []
