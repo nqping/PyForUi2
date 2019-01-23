@@ -6,7 +6,7 @@
 # @desc    :
 import argparse
 
-if __name__ == '_main__':
+if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--ip", required=True, help="ip")
     args = vars(ap.parse_args())
