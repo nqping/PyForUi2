@@ -18,11 +18,10 @@ if __name__ == '__main__':
     ap.add_argument("-i", "--ip", required=True, help="ip")
     args = vars(ap.parse_args())
     test_ip = args['ip']
-    print(test_ip)
 
     cs = CaseStrategy()
     cases = cs.collect_cases(suite=True)
-    Drivers().run(cases,test_ip)
+    Drivers().run(cases,[test_ip])
 
     # Generate zip_report file  压缩测试报告文件
     # zip_report()
