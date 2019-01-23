@@ -14,12 +14,12 @@ if __name__ == '__main__':
     # back up old report dir 备份旧的测试报告文件夹到TestReport_backup下
     # backup_report()
     #获取jenkins传IP参数
-    test_ip = []
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--ip", required=True, help="ip")
     args = vars(ap.parse_args())
-    test_ip.append(args['ip'])
-
+    tempip = args['ip']
+    # tempip='10.128.205.68,10.128.205.167'
+    test_ip = tempip.split(',')
 
     cs = CaseStrategy()
     cases = cs.collect_cases(suite=True)
