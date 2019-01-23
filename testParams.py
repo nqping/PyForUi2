@@ -8,7 +8,7 @@ import argparse
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--ip", required=True, help="ip")
+    ap.add_argument("-i", "-ip", required=True, help="ip")
     args = vars(ap.parse_args())
 
     print(args['ip'])
