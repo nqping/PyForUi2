@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # backup_report()
     #获取jenkins传IP参数
     ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "-ip", required=True, help="ip")
+    ap.add_argument("-i", "--ip", required=True, help="ip")
     args = vars(ap.parse_args())
     test_ip = args['ip']
     print(test_ip)
