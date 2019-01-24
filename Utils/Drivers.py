@@ -18,6 +18,7 @@ from Utils.Report import create_statistics_report
 class Drivers:
     @staticmethod
     def _run_cases(run, cases):
+
         log = Log()
         log.set_logger(run.get_device()['model'], run.get_path() + '/' + 'client.log')
         log.i('udid: %s', run.get_device()['udid'])
@@ -92,6 +93,8 @@ class Drivers:
 
         #  Generate statistics report  生成统计测试报告 将所有设备的报告在一个HTML中展示
         create_statistics_report(runs)
+
+
 
 # if __name__ == '__main__':
     # print(ATX_Server(ReadConfig().get_url()).online_devices())
