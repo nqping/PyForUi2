@@ -38,7 +38,9 @@ def ftp_downloadFile(locatpath,romatepath):
 
 
 def getDevices(ip):
+    print(ip)
     d = u2.connect(ip)
+    # d = u2.connect_wifi(ip)
     device = d.device_info
     return device
 
@@ -60,8 +62,9 @@ if __name__ =='__main__':
     tempip = args['ip']
     localpath = args['path']
     romatepath = args['remotepath']
-
-    device = getDevices(tempip[0])
+    ip = tempip.split(',')
+    print(ip[0])
+    device = getDevices(ip[0])
     # localpath = 'F:/temp/packages'
     # romatepath = "/AGL Video"
     if device != {}:
