@@ -63,7 +63,7 @@ if __name__ =='__main__':
 
     device = getDevices(tempip[0])
     # localpath = 'F:/temp/packages'
-    romatepath = "/AGL Video"
+    # romatepath = "/AGL Video"
     if device != {}:
         appPath = ftp_downloadFile(localpath,romatepath)
         installApp(device['serial'],appPath)
