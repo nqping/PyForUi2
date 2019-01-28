@@ -19,11 +19,11 @@ if __name__ == '__main__':
     method = args['method']
     command = args['command']
 
-    # tempip=['192.168.95.4','192.168.95.2'] #192.168.95.4
+    # tempip='10.128.205.226' #192.168.95.4
     # method = 'IP'
-    # command = 'monkey -p com.tcl.joylockscreen -v 1000'
+    # command = 'monkey -p com.video.agl -v 1000'
+    ip = tempip.split(',')
 
-    DriversMonkey().run(method=method,ip=tempip,command=command)
-
+    DriversMonkey().run(method=method,ip=ip,command=command)
 
 
