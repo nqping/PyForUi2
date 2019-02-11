@@ -33,7 +33,7 @@ class DriversInstall(object):
         d.push(apkPath, dst)
         print('start install apk ............')
         d.shell(['pm', 'install', '-r', dst],stream=True,timeout=60)
-        d.shell(['rm', dst])
+        # d.shell(['rm', dst])
 
         base_page.set_original_ime()
         base_page.identify()
