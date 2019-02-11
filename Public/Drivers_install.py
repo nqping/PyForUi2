@@ -32,14 +32,11 @@ class DriversInstall(object):
         print('start push apk.......')
         d.push(apkPath, dst)
         print('start install apk ............')
-        output,exit_code= d.shell(['pm', 'install', '-r', dst],stream=True,timeout=60)
+        d.shell(['pm', 'install', '-r', dst],stream=True,timeout=60)
         d.shell(['rm', dst])
 
         base_page.set_original_ime()
         base_page.identify()
-
-        print(device)
-        # print(cmd)
 
     def run(self, method=None, ip=None, apkPath=None):
         if method == 'SERVER':
