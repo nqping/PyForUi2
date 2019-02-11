@@ -5,11 +5,12 @@
 # @File    : Drivers_install.py
 # @desc    :
 
-import os
+import os,time
 from Utils.Devices_new import *
 from Utils.Log import Log
 from monkey.monkey import Monkey
 from PageObject.BasePage import BasePage
+
 
 class DriversInstall(object):
     @staticmethod
@@ -34,6 +35,7 @@ class DriversInstall(object):
         print('start install apk ............')
         d.shell(['pm', 'install', '-r', dst],stream=True,timeout=60)
         # d.shell(['rm', dst])
+        time.sleep(60)
 
         base_page.set_original_ime()
         base_page.identify()
