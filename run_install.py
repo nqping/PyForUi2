@@ -6,68 +6,34 @@
 # @desc    : 安装应用
 
 import uiautomator2 as u2
-
-from ftplib import FTP
-import os,subprocess,argparse
-
-host = "10.128.208.198"
-port=2121
-username = "anonymous"
-password = "tcl@1234"
-
-ftp = FTP()  # 实例化FTP对象
-ftp.connect(host,port)
-ftp.login(username, password)  # 登录
-ftp.getwelcome() #打印欢迎信息
-
-
-def ftp_downloadFile(locatpath,romatepath):
-    bufsize = 1024
-    ftp.cwd(romatepath)#设置FTP目标路径
-    list = ftp.nlst()# 获取目录下的文件,获得目录列表
-    files = []
-    for name in list:
-        files.append(name)
-
-    targetfilename =list[len(list) - 2] #取最新的debug版本
-    locatpath =os.path.join(locatpath,targetfilename)
-    fp = open(locatpath, 'wb')
-    ftp.retrbinary('RETR %s' % targetfilename, fp.write, bufsize)
-    ftp.close()
-    return locatpath
-
-
-def getDevices(ip):
-    print(ip)
-    d = u2.connect(ip)
-    # d = u2.connect_wifi(ip)
-    device = d.device_info
-    return device
-
-def installApp(device,filepath):
-    cmd ="adb -s %s install -r %s"%(device,filepath)
-    output = subprocess.getoutput(cmd=cmd)
-    print(output)
-
-def clearDir(appPath):
-    if os.path.isfile(appPath): #判断是否文件路径
-        os.remove(appPath)
+import argparse
+from Utils.ftpUtils import ftp_downloadFile
+from Public.Drivers_install import DriversInstall
 
 if __name__ =='__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--ip", required=False, help="ip")
     ap.add_argument("-p", "--path", required=True, help="path")
-    ap.add_argument("-r", "--remotepath", required=True, help="remotepath")
+    ap.add_argument("-m","--method",required=True, help="method")
     args = vars(ap.parse_args())
     tempip = args['ip']
-    localpath = args['path']
-    romatepath = args['remotepath']
-    ip = tempip.split(',')
-    print(ip[0])
-    device = getDevices(ip[0])
-    # localpath = 'F:/temp/packages'
-    # romatepath = "/AGL Video"
-    if device != {}:
-        appPath = ftp_downloadFile(localpath,romatepath)
-        installApp(device['serial'],appPath)
+    ftpDst = args['path']
+    method = args['method']
+    ips = tempip.split(',')
+
+    # ips=['192.168.95.4','192.168.95.3']
+    # # print(ip[0])
+    # path = "F:\\temp\\packages\\download"
+    # romatepath="/AGL Video"
+    # apkPath = ftp_downloadFile(path,romatepath)
+
+    # tempip = '192.168.95.4,192.168.95.3'  # 192.168.95.4
+    # method = 'IP'
+    # ftpDst = '/AGL Video'
+    # ip = tempip.split(',')
+
+    locatpath = 'F:\\temp\\packages\\download'
+    apkPath = ftp_downloadFile(locatpath, ftpDst)
+
+    DriversInstall().run(method=method,ip=ips,apkPath=apkPath)
 
