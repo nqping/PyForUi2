@@ -33,7 +33,7 @@ class DriversInstall(object):
         print('start push apk.......')
         d.push(apkPath, dst)
         print('start install apk ............')
-        d.shell(['pm', 'install', '-r', dst],stream=False)
+        d.shell(['pm', 'install', '-r', dst],stream=True)
         # d.shell(['rm', dst])
         # time.sleep(60)
 
