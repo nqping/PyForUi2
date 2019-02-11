@@ -7,6 +7,7 @@
 
 import argparse
 from monkey.Drivers_monkey import DriversMonkey
+from Utils.ftpUtils import ftp_downloadFile
 
 
 if __name__ == '__main__':
@@ -18,12 +19,17 @@ if __name__ == '__main__':
     tempip = args['ip']
     method = args['method']
     command = args['command']
+    ips = tempip.split(',')
 
-    # tempip='10.128.205.226' #192.168.95.4
+    # tempip='192.168.95.4,192.168.95.3' #192.168.95.4
     # method = 'IP'
-    # command = 'monkey -p com.video.agl -v 1000'
-    ip = tempip.split(',')
+    # command = 'monkey -p com.video.agl -v 1000>/sdcard/Android/monkeylog.txt'
+    # ip = tempip.split(',')
+    # ftpDst = '/AGL Video'
+    #
+    # locatpath = 'F:\\temp\\packages\\download'
+    # apkPath = ftp_downloadFile(locatpath,ftpDst)
 
-    DriversMonkey().run(method=method,ip=ip,command=command)
+    DriversMonkey().run(method=method,ip=ips,command=command)
 
 
