@@ -5,15 +5,18 @@
 # @File    : Drivers_monkey.py
 # @desc    :
 
+import os
 from Utils.Devices_new import *
 from Utils.Log import Log
 from PageObject.BasePage import BasePage
 from monkey.monkey import Monkey
+from Utils.ftpUtils import ftp_downloadFile
+from Utils.installApp import InstallApp
 
 class DriversMonkey(object):
 
     @staticmethod
-    def _run_monkey(run,cmd):
+    def _run_monkey(run,cmd,apkPath):
         log = Log()
         base_page = BasePage()
         device = run.get_device()
@@ -26,16 +29,29 @@ class DriversMonkey(object):
         base_page.set_fastinput_ime()
 
         d = base_page.get_driver()
+        # #安装应用
+        # file_name = os.path.basename(apkPath)
+        # dst = '/sdcard/' + file_name
+        # print("apkpath:%s"%dst)
+        # print('start push apk.......')
+        # d.push(apkPath, dst)
+        # print('start install apk ............')
+        # output,exit_code= d.shell(['pm', 'install', '-r', dst],timeout=60)
+        #
+        # print(exit_code)
+        # if exit_code.decode() == 'Success':
+        #     print('start remove apk package-------')
+        #     d.shell(['rm', dst])
+        #     print('runing monkey command---------')
         d.shell(cmd)
 
         base_page.set_original_ime()
         base_page.identify()
 
-
         print(device)
-        print(cmd)
+        # print(cmd)
 
-    def run(self,method=None,ip=None,command=None):
+    def run(self,method=None,ip=None,command=None,apkPath=None):
         if method == 'SERVER':
             print('Checking available online devices from ATX-Server...')
             devices = get_online_devices()
@@ -65,7 +81,7 @@ class DriversMonkey(object):
 
         pool = Pool(processes=len(runs))
         for run in runs:
-            pool.apply_async(self._run_monkey,args=(run,command,))
+            pool.apply_async(self._run_monkey,args=(run,command,apkPath,))
 
         print('Waiting for all runs done........ ')
         pool.close()
