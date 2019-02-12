@@ -22,7 +22,7 @@ class DriversMonkey(object):
 
         base_page.set_fastinput_ime()
 
-        d = base_page.get_driver()
+        # d = base_page.get_driver()
 
         serial = run.get_device()['serial']
 
@@ -30,12 +30,11 @@ class DriversMonkey(object):
         cmd = cmd%(serial)
         print('run monkey command:%s' % cmd)
 
-
-        subprocess.getoutput(cmd)
         # d.shell(cmd)
 
         base_page.set_original_ime()
         base_page.identify()
+        subprocess.getoutput(cmd)
 
     @staticmethod
     def checkMonkeySession(res):
