@@ -14,13 +14,13 @@ if __name__ =='__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--ip", required=False, help="ip")
     ap.add_argument("-p", "--path", required=False, help="path")
-    ap.add_argument("-m","--method",required=True, help="method")
+    # ap.add_argument("-m","--method",required=False, help="method")
     args = vars(ap.parse_args())
     tempip = args['ip']
     ftpDst = args['path']
-    method = args['method']
+    # method = args['method']
     ips=[]
-    if tempip is not None:
+    if tempip:
         ips = tempip.split(',')
 
     # ips=['192.168.95.4','192.168.95.3']
@@ -38,7 +38,7 @@ if __name__ =='__main__':
     locatpath = 'F:\\temp\\packages\\download'
     apkPath = ftp_downloadFile(locatpath, ftpDst)
 
-    DriversInstall().run(method=method, ip=ips, apkPath=apkPath)
+    DriversInstall().run(method='USB', ip=ips, apkPath=apkPath)
 
 
 
