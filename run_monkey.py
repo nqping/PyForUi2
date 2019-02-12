@@ -13,11 +13,11 @@ from Utils.ftpUtils import ftp_downloadFile
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--ip", required=False, help="ip")
-    # ap.add_argument("-m","--method", required=False,help="method")
+    ap.add_argument("-m","--method", required=True,help="method")
     ap.add_argument("-c","--command",required=False, help="command")
     args = vars(ap.parse_args())
     tempip = args['ip']
-    # method = args['method']
+    method = args['method']
     command = args['command']
 
     ips=[]
@@ -25,6 +25,6 @@ if __name__ == '__main__':
         ips = tempip.split(',')
 
 
-    DriversMonkey().run(method='USB',ip=ips,command=command)
+    DriversMonkey().run(method=method,ip=ips,command=command)
 
 
