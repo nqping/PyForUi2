@@ -54,13 +54,18 @@ class DriversInstall(object):
             devices = get_devices(ip)
             print('\nThere has %s  devices alive in config IP list' % len(devices))
         elif method == 'USB':
-            # get  devices connected PC with USB
-            print('Checking available USB devices connected on PC... ')
-            devices = connect_devices()
+            if len(ip)>0:
+                #get devices connected by input
+                print('Checking available USB devices connected on Input ')
+                devices = connect_devices_input(ip)
+            else:
+                # get  devices connected PC with USB
+                print('Checking available USB devices connected on PC... ')
+                devices = connect_devices()
             print('\nThere has %s  USB devices alive ' % len(devices))
 
         else:
-            raise Exception('Config.ini method illegal:method =%s' % method)
+            raise Exception('input method illegal:method =%s' % method)
 
         if not devices:
             print('There is no device found,test over.')
