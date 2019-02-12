@@ -29,7 +29,7 @@ class DriversMonkey(object):
         base_page.identify()
 
 
-    def run(self,method=None,ip=None,command=None):
+    def run(self,method='USB',ip=None,command=None):
         if method == 'SERVER':
             print('Checking available online devices from ATX-Server...')
             devices = get_online_devices()
@@ -41,9 +41,14 @@ class DriversMonkey(object):
             devices = get_devices(ip)
             print('\nThere has %s  devices alive in config IP list' % len(devices))
         elif method == 'USB':
-            # get  devices connected PC with USB
-            print('Checking available USB devices connected on PC... ')
-            devices = connect_devices()
+            if len(ip) > 0:
+                # get  devices connected PC with USB
+                print('Checking available USB devices connected on PC... ')
+                devices = connect_devices_input(ip)
+            else:
+                # get  devices connected PC with USB
+                print('Checking available USB devices connected on PC... ')
+                devices = connect_devices()
             print('\nThere has %s  USB devices alive ' % len(devices))
 
         else:
