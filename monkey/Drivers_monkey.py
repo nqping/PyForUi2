@@ -30,6 +30,7 @@ class DriversMonkey(object):
         cmd = cmd%(serial)
         print('run monkey command:%s' % cmd)
 
+
         subprocess.getoutput(cmd)
         # d.shell(cmd)
 
