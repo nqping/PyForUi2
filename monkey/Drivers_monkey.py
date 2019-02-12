@@ -14,19 +14,35 @@ class DriversMonkey(object):
     @staticmethod
     def _run_monkey(run,cmd):
         base_page = BasePage()
-        if 'ip' in run.get_device():
-            base_page.set_driver(run.get_device()['ip'])
-        else:
-            base_page.set_driver(run.get_device()['serial'])
+        base_page.set_driver(run.get_device()['serial'])
+        # if 'ip' in run.get_device():
+        #     base_page.set_driver(run.get_device()['ip'])
+        # else:
+        #     base_page.set_driver(run.get_device()['serial'])
 
         base_page.set_fastinput_ime()
 
         d = base_page.get_driver()
-        print('run monkey command:%s'%cmd)
-        d.shell(cmd)
+
+        serial = run.get_device()['serial']
+
+
+        cmd = cmd%(serial)
+        print('run monkey command:%s' % cmd)
+
+        subprocess.getoutput(cmd)
+        # d.shell(cmd)
 
         base_page.set_original_ime()
         base_page.identify()
+
+    @staticmethod
+    def checkMonkeySession(res):
+        print("callback==="+res)
+        # cls = base_page.get_driver()
+        #
+        # cls.session("com.android.commands.monkey", attach=True)
+
 
 
     def run(self,method='USB',ip=None,command=None):
@@ -64,7 +80,7 @@ class DriversMonkey(object):
 
         pool = Pool(processes=len(runs))
         for run in runs:
-            pool.apply_async(self._run_monkey,args=(run,command,))
+            pool.apply_async(self._run_monkey,args=(run,command,),callback=self.checkMonkeySession)
 
         print('Waiting for all runs done........ ')
         pool.close()
