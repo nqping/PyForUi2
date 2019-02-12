@@ -84,6 +84,32 @@ def connect_devices():
         print("No available android devices detected.")
         return []
 
+def connect_devices_input(serialsList):
+    '''get the devices USB connected on PC
+    return alive devices'''
+    # output = subprocess.check_output(['adb', 'devices'])
+    # pattern = re.compile(
+    #     r'(?P<serial>[^\s]+)\t(?P<status>device|offline)')
+    # matches = pattern.findall(output.decode())
+    valid_serials = serialsList
+
+    if valid_serials:
+        print('Start check %s devices connected on PC: ' % len(valid_serials))
+        pool = Pool(processes=len(valid_serials))
+        tmp_list = []
+        for run in valid_serials:
+            tmp_list.append(pool.apply_async(check_alive, args=(run,)))
+        pool.close()
+        pool.join()
+        devices_list = []
+        for i in tmp_list:
+            if i.get():
+                devices_list.append(i.get())
+        return devices_list
+    if len(valid_serials) == 0:
+        print("No available android devices detected.")
+        return []
+
 
 def check_alive(device):
     if isinstance(device, dict):
