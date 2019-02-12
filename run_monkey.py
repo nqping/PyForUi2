@@ -24,7 +24,6 @@ if __name__ == '__main__':
     if tempip:
         ips = tempip.split(',')
 
-
     DriversMonkey().run(method=method,ip=ips,command=command)
 
 
