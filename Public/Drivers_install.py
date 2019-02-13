@@ -39,7 +39,7 @@ class DriversInstall(object):
 
         base_page.set_original_ime()
         base_page.identify()
-        time.sleep(60)
+        time.sleep(30)
         d.shell(['rm', dst])
 
     def run(self, method=None, ip=None, apkPath=None):
