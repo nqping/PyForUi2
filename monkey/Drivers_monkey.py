@@ -4,10 +4,12 @@
 # @Author  : qingping.niu
 # @File    : Drivers_monkey.py
 # @desc    :
+import time,os
 
 from Utils.Devices_new import *
 from PageObject.BasePage import BasePage
 from monkey.monkey import Monkey
+from Public.adbCommand import get_pid,kill_process
 
 class DriversMonkey(object):
 
@@ -22,27 +24,60 @@ class DriversMonkey(object):
 
         base_page.set_fastinput_ime()
 
-        # d = base_page.get_driver()
+        d = base_page.get_driver()
 
         serial = run.get_device()['serial']
+        model = run.get_device()['model']
 
 
-        cmd = cmd%(serial)
-        print('run monkey command:%s' % cmd)
+        # cmd = cmd%(serial)
+        # print('run monkey command:%s' % cmd)
 
         # d.shell(cmd)
 
         base_page.set_original_ime()
         base_page.identify()
-        subprocess.getoutput(cmd)
+
+        DriversMonkey.startMonkey(serial,model,cmd,d)
 
     @staticmethod
-    def checkMonkeySession(res):
-        print("callback==="+res)
-        # cls = base_page.get_driver()
-        #
-        # cls.session("com.android.commands.monkey", attach=True)
+    def startMonkey(serial,model,cmd,cls):
+        # 日志存放路径
+        log_dir = 'F:\\mibctestFTP\\monkeyLog'
+        today = time.strftime('%Y%m%d', time.localtime(time.time()))
+        full_path = os.path.join(log_dir, today)
+        if not os.path.exists(full_path):
+            os.makedirs(full_path)
 
+        #组装文件及运行命令
+        timeFile = time.strftime('%H%M%S', time.localtime(time.time()))
+        monkeyLogFile = full_path + os.path.sep + model+'_Monkey_' + timeFile + '.txt'
+
+        cmd = cmd % (serial)+'>'+monkeyLogFile
+        print('run monkey command:%s' % cmd)
+        subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        logcatLogFile = full_path + os.path.sep + model+'_Logcat_' + timeFile + '.txt'
+
+
+        logcmd = "adb -s %s logcat -c && adb -s %s logcat -v time *:E >%s"%(serial,serial,logcatLogFile)
+        subprocess.Popen(logcmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        pid = get_pid(serial,'logcat')
+
+        while True:
+            print('-----sleep----------')
+            time.sleep(2*60)
+            try:
+                m_session = cls.session('com.android.commands.monkey', attach=True)
+                print(m_session._pid)
+                if m_session._pid:
+                    continue
+                else:
+                    break
+            except:
+                kill_process(serial, pid)
+                break
+        print("---------monkey finished and logcat process kill----------")
 
 
     def run(self,method='USB',ip=None,command=None):
@@ -80,7 +115,7 @@ class DriversMonkey(object):
 
         pool = Pool(processes=len(runs))
         for run in runs:
-            pool.apply_async(self._run_monkey,args=(run,command,),callback=self.checkMonkeySession)
+            pool.apply_async(self._run_monkey,args=(run,command,))
 
         print('Waiting for all runs done........ ')
         pool.close()
