@@ -5,7 +5,10 @@
 # @File    : run_monkey.py
 # @desc    :
 
+import subprocess
 import argparse
+
+import uiautomator2 as u2
 from monkey.Drivers_monkey import DriversMonkey
 from Utils.ftpUtils import ftp_downloadFile
 
@@ -24,6 +27,20 @@ if __name__ == '__main__':
     if tempip:
         ips = tempip.split(',')
 
+    # method='USB'
+    # ips=['HQJNHEKBK7UGJ78S']
+    # command="monkey -p com.video.agl -v 10000 > /sdcard/monkey_log.txt"
+
     DriversMonkey().run(method=method,ip=ips,command=command)
+    print('start export monkey log-------')
+    if len(ips) > 0:
+        for i in ips:
+            subprocess.getoutput('adb -s %s pull /sdcard/monkey_log.txt F:\\temp\\packages\\log'%i)
+
+
+
+
+
+
 
 
