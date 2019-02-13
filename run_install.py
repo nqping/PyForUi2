@@ -10,6 +10,9 @@ import argparse
 from Utils.ftpUtils import ftp_downloadFile
 from Public.Drivers_install import DriversInstall
 
+
+
+
 if __name__ =='__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--ip", required=False, help="ip")
@@ -35,7 +38,7 @@ if __name__ =='__main__':
     # ftpDst = '/AGL Video'
     # ips = ['HQJNHEKBK7UGJ78S','a96cd66d']
 
-    locatpath = 'F:\\temp\\packages\\download'
+    locatpath = 'F:\\temp\\download'
     apkPath = ftp_downloadFile(locatpath, ftpDst)
 
     DriversInstall().run(method=method, ip=ips, apkPath=apkPath)
