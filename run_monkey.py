@@ -13,6 +13,7 @@ from monkey.Drivers_monkey import DriversMonkey
 from Utils.ftpUtils import ftp_downloadFile
 
 
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--ip", required=False, help="ip")
@@ -28,14 +29,16 @@ if __name__ == '__main__':
         ips = tempip.split(',')
 
     # method='USB'
-    # ips=['HQJNHEKBK7UGJ78S']
-    # command="monkey -p com.video.agl -v 10000 > /sdcard/monkey_log.txt"
+    # ips=['HQJNHEKBK7UGJ78S','VCR87S4TAUGA7TZH']
+    # command="adb -s %s shell monkey -p com.video.agl -v 10000"
 
     DriversMonkey().run(method=method,ip=ips,command=command)
-    print('start export monkey log-------')
-    if len(ips) > 0:
-        for i in ips:
-            subprocess.getoutput('adb -s %s pull /sdcard/monkey_log.txt F:\\temp\\packages\\log'%i)
+
+
+
+    # if len(ips) > 0:
+    #     for i in ips:
+    #         subprocess.getoutput('adb -s %s pull /sdcard/monkey_log.txt F:\\temp\\packages\\log'%i)
 
 
 
