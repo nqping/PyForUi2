@@ -15,7 +15,7 @@ def get_pid(devices,grepname):
         pid = None
     else:
         pid = output[1].split()[1]
-    print('%s pid=%s'%(grepname,pid))
+    # print('%s pid=%s'%(grepname,pid))
     return pid
 
 def kill_process(devices,pid):

@@ -61,11 +61,13 @@ class DriversMonkey(object):
 
 
         logcmd = "adb -s %s logcat -c && adb -s %s logcat -v time *:E >%s"%(serial,serial,logcatLogFile)
+        print('logcat command:%s'%logcmd)
         subprocess.Popen(logcmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         pid = get_pid(serial,'logcat')
 
+        print('logcat pid=%s'%pid)
+
         while True:
-            print('-----sleep----------')
             time.sleep(2*60)
             try:
                 m_session = cls.session('com.android.commands.monkey', attach=True)
