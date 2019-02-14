@@ -20,6 +20,7 @@ findstr = getSystemStatus()
 def get_pid(devices,grepname):
     '''获取进程PID'''
     cmd = 'adb -s %s shell ps | %s %s' % (devices,findstr,grepname)
+    print(cmd)
     output = os.popen(cmd).read()
     pid = None
     if output != "":
