@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # method='USB'
     # ips=['HQJNHEKBK7UGJ78S','VCR87S4TAUGA7TZH']
     # command="adb -s %s shell monkey -p com.video.agl -v 10000"
-
+    print("method=="+method)
     DriversMonkey().run(method=method,ip=ips,command=command)
 
 
