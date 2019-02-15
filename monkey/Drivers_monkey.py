@@ -65,8 +65,11 @@ class DriversMonkey(object):
         subprocess.Popen(logcmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         output, exit_code = cls.shell(["ps", "|grep", "logcat"])
-        pid = output.split()[1]
-        print('logcat pid=%s' % pid)
+        print(output)
+        temp = output.split()
+        print(temp)
+        pid = temp[1]
+        print('----logcat pid=%s' % pid)
 
         # pid = get_pid(serial,'logcat')
 
