@@ -63,12 +63,10 @@ class DriversMonkey(object):
         logcmd = "adb -s %s logcat -c && adb -s %s logcat -v time *:E >%s"%(serial,serial,logcatLogFile)
         print('logcat command:%s'%logcmd)
         subprocess.Popen(logcmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
+        time.sleep(5)
         output, exit_code = cls.shell(["ps", "|grep", "logcat"])
-        print(output)
-        temp = output.split()
-        print(temp)
-        pid = temp[1]
+        print("****"+output)
+        pid = output.split()[1]
         print('----logcat pid=%s' % pid)
 
         # pid = get_pid(serial,'logcat')
