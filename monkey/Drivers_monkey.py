@@ -72,7 +72,7 @@ class DriversMonkey(object):
         # pid = get_pid(serial,'logcat')
 
         while True:
-            time.sleep(2*60)
+            time.sleep(30)
             try:
                 m_session = cls.session('com.android.commands.monkey', attach=True)
                 print(m_session._pid)
