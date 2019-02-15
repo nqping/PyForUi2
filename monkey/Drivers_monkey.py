@@ -88,7 +88,7 @@ class DriversMonkey(object):
         print("---------monkey finished and logcat process kill----------")
 
 
-    def run(self,method='USB',ip=None,command=None):
+    def run(self,method=None,ip=None,command=None):
         if method == 'SERVER':
             print('Checking available online devices from ATX-Server...')
             devices = get_online_devices()
