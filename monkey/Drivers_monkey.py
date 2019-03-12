@@ -18,6 +18,7 @@ class DriversMonkey(object):
     def _run_monkey(run,cmd):
         base_page = BasePage()
         base_page.set_driver(run.get_device()['serial'])
+
         # if 'ip' in run.get_device():
         #     base_page.set_driver(run.get_device()['ip'])
         # else:
@@ -30,11 +31,6 @@ class DriversMonkey(object):
         serial = run.get_device()['serial']
         model = run.get_device()['model']
 
-
-        # cmd = cmd%(serial)
-        # print('run monkey command:%s' % cmd)
-
-        # d.shell(cmd)
 
         base_page.set_original_ime()
         base_page.identify()
@@ -72,7 +68,7 @@ class DriversMonkey(object):
             time.sleep(30)
             try:
                 m_session = cls.session('com.android.commands.monkey', attach=True)
-                print(m_session._pid)
+                # print(m_session._pid)
                 if m_session._pid:
                     continue
                 else:
@@ -87,6 +83,7 @@ class DriversMonkey(object):
         monkeyCrash = full_path + os.path.sep + model+"_monkeyCrash.txt"
         MonkeyLog.logcat_analyze(logcatLogFile,logcatFata)
         MonkeyLog.crash_analyze(monkeyLogFile,monkeyCrash)
+        print("---------log analyze finished------------------------------------------------")
 
 
     def run(self,method=None,ip=None,command=None):
