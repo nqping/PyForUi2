@@ -82,6 +82,7 @@ class DriversMonkey(object):
         logcatFata = full_path + os.path.sep + model+"_logcatCrash.txt"
         monkeyCrash = full_path + os.path.sep + model+"_monkeyCrash.txt"
         MonkeyLog.logcat_analyze(logcatLogFile,logcatFata)
+        print("----------crash_analyze--------------------")
         MonkeyLog.crash_analyze(monkeyLogFile,monkeyCrash)
         print("---------log analyze finished------------------------------------------------")
 
