@@ -18,7 +18,9 @@ class MonkeyLog(object):
 
 
     @staticmethod
-    def crash_analyze(logPath,rsFilePath):
+    def crash_analyze(logPath,carshFilePath):
+        print('monkey log path:%s'+logPath)
+        print('monkey log analyze file:%s'%carshFilePath)
         packagename = [] #包名
 
         lines_name = []
@@ -27,11 +29,12 @@ class MonkeyLog(object):
         crashType=[]
 
         data = linecache.getlines(logPath)
+        detail = []  # crash详情
         for row, line in enumerate(data, 1):
-            detail = []  # crash详情
+
             if line.startswith(r'// CRASH:'):
                 lines_name.append(row)
-                detail.append("===============================\n")
+                detail.append("===========================================================\n")
                 detail.append(line)
                 detail.append(data[row + 1])
                 detail.append(data[row + 2])
@@ -45,10 +48,11 @@ class MonkeyLog(object):
             if line.startswith(r'// 	at '):
                 detail.append(line)
 
+
         if len(detail) >0:
-            write_file(rsFilePath,detail)
+            write_file(carshFilePath,detail)
 
-
+    @staticmethod
     def logcat_analyze(logPath,rsFilePath):
         '''
         分析logcat命令产生的日志
@@ -86,7 +90,7 @@ if __name__=='__main__':
 
 
     # logcat_fata_analyze("f:\\temp\\monkeylog.txt")
-    MonkeyLog.crash_analyze("f:\\temp\\myMonkeyLogcat.txt")
+    MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\20190312\\5052D_Monkey_170206.txt",'F:\\mibctestFTP\\monkeyLog\\20190312\\monkeyCrash.txt')
     # dna = 'GTGTAATGCGAGAGAGAGAGAAGTGCTGTGTAGCTGATGCGCTAGTTTCGCGCTAGAGAGTGTAAAATTGGAGAGTGTAGTAGTGTA'
     # motif = 'GTGTA'
     # l = []

@@ -50,7 +50,7 @@ class DriversMonkey(object):
         timeFile = time.strftime('%H%M%S', time.localtime(time.time()))
         monkeyLogFile = full_path + os.path.sep + model+'_Monkey_' + timeFile + '.txt'
 
-        cmd = cmd % (serial)+'>'+monkeyLogFile
+        cmd = cmd % (serial)+'>'+monkeyLogFile+' 2>&1'
         print('run monkey command:%s' % cmd)
         subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -81,7 +81,6 @@ class DriversMonkey(object):
         #跑完monkey分析日志
         logcatFata = full_path + os.path.sep + model+"_logcatCrash.txt"
         monkeyCrash = full_path + os.path.sep + model+"_monkeyCrash.txt"
-        # monkeylog = MonkeyLog()
         MonkeyLog.crash_analyze(monkeyLogFile, monkeyCrash)
         MonkeyLog.logcat_analyze(logcatLogFile,logcatFata)
 
