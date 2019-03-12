@@ -71,10 +71,10 @@ class MonkeyLog(object):
                 if line.find(keyword[0]) >0:
                     crashCount+=1
                     pid = line[line.find("(")+1 : line.find(")")]
-                    print(pid)
+                    # print(pid)
                     line = lines[row+3]
                     crashType=line[line.find('java.lang.'):len(line)]
-                    print(crashType)
+                    # print(crashType)
 
             for line in lines:
                 if pid in line:
