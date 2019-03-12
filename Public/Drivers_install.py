@@ -39,7 +39,7 @@ class DriversInstall(object):
 
         base_page.set_original_ime()
         base_page.identify()
-        time.sleep(30)
+        time.sleep(45)
         print('delete apk ...............')
         d.shell(['rm', dst])
 
