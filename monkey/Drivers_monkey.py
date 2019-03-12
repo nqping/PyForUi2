@@ -10,6 +10,7 @@ from Utils.Devices_new import *
 from PageObject.BasePage import BasePage
 from monkey.monkey import Monkey
 from Public.adbCommand import get_pid,kill_process
+from Utils.MonkeyLogAnalyze import MonkeyLog
 
 class DriversMonkey(object):
 
@@ -59,7 +60,6 @@ class DriversMonkey(object):
 
         logcatLogFile = full_path + os.path.sep + model+'_Logcat_' + timeFile + '.txt'
 
-
         logcmd = "adb -s %s logcat -c && adb -s %s logcat -v time *:E >%s"%(serial,serial,logcatLogFile)
         print('logcat command:%s'%logcmd)
         subprocess.Popen(logcmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -67,9 +67,6 @@ class DriversMonkey(object):
         output, exit_code = cls.shell(["ps", "|grep", "logcat"])
         print("****"+output)
         pid = output.split()[1]
-        print('----logcat pid=%s' % pid)
-
-        # pid = get_pid(serial,'logcat')
 
         while True:
             time.sleep(30)
@@ -84,6 +81,12 @@ class DriversMonkey(object):
                 kill_process(serial, pid)
                 break
         print("---------monkey finished and logcat process kill----------")
+
+        #跑完monkey分析日志
+        logcatFata = full_path + os.path.sep + model+"_logcatCrash.txt"
+        monkeyCrash = full_path + os.path.sep + model+"_monkeyCrash.txt"
+        MonkeyLog.logcat_analyze(logcatLogFile,logcatFata)
+        MonkeyLog.crash_analyze(monkeyLogFile,monkeyCrash)
 
 
     def run(self,method=None,ip=None,command=None):
