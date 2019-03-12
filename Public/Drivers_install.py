@@ -40,7 +40,10 @@ class DriversInstall(object):
         base_page.set_original_ime()
         base_page.identify()
         time.sleep(30)
+        print('delete apk ...............')
         d.shell(['rm', dst])
+
+
 
     def run(self, method=None, ip=None, apkPath=None):
         if method == 'SERVER':
