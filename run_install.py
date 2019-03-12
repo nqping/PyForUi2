@@ -38,7 +38,7 @@ if __name__ =='__main__':
     # ftpDst = '/AGL Video'
     # ips = ['HQJNHEKBK7UGJ78S','a96cd66d']
 
-    locatpath = 'F:\\temp\\download'
+    locatpath = 'F:\\mibctestFTP\\download'
     apkPath = ftp_downloadFile(locatpath, ftpDst)
 
     DriversInstall().run(method=method, ip=ips, apkPath=apkPath)
