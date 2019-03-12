@@ -81,9 +81,9 @@ class DriversMonkey(object):
         #跑完monkey分析日志
         logcatFata = full_path + os.path.sep + model+"_logcatCrash.txt"
         monkeyCrash = full_path + os.path.sep + model+"_monkeyCrash.txt"
-        monkeylog = MonkeyLog()
-        monkeylog.crash_analyze(monkeyLogFile, monkeyCrash)
-        monkeylog.logcat_analyze(logcatLogFile,logcatFata)
+        # monkeylog = MonkeyLog()
+        MonkeyLog.crash_analyze(monkeyLogFile, monkeyCrash)
+        MonkeyLog.logcat_analyze(logcatLogFile,logcatFata)
 
         print("---------log analyze finished------------------------------------------------")
 
