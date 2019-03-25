@@ -41,7 +41,7 @@ class DriversMonkey(object):
     def startMonkey(serial,model,cmd,cls):
         # 日志存放路径
         log_dir = 'F:\\mibctestFTP\\monkeyLog'
-        today = time.strftime('%Y%m%d', time.localtime(time.time()))
+        today = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
         full_path = os.path.join(log_dir, today)
         if not os.path.exists(full_path):
             os.makedirs(full_path)
