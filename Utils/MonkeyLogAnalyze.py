@@ -51,6 +51,8 @@ class MonkeyLog(object):
 
         if len(detail) >0:
             write_file(carshFilePath,detail)
+        else:
+            print("******未发现CARSH**********")
 
     @staticmethod
     def logcat_analyze(logPath,rsFilePath):
@@ -83,6 +85,8 @@ class MonkeyLog(object):
             # 将carsh日志写入文件
             if len(crashDetail) > 0 :
                 write_file(rsFilePath,crashDetail)
+            else:
+                print("******logcat日志未发现CARSH***********")
 
 
 
