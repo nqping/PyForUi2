@@ -41,7 +41,7 @@ class DriversMonkey(object):
     def startMonkey(serial,model,cmd,cls):
         # 日志存放路径
         log_dir = 'F:\\mibctestFTP\\monkeyLog'
-        today = time.strftime('%Y%m%d_%H%M%S', time.localtime(time.time()))
+        today = time.strftime('%Y%m%d', time.localtime(time.time()))
         print(today)
         full_path = os.path.join(log_dir, today)
         if not os.path.exists(full_path):
@@ -77,6 +77,10 @@ class DriversMonkey(object):
             except:
                 kill_process(serial, pid)
                 break
+
+        print("-----启动ATX服务----")
+        cls.app_start("jp.mmasashi.turnWiFiOnAndEnjoyYouTube")
+
         print("---------monkey finished and logcat process kill----------")
 
         #跑完monkey分析日志
@@ -86,6 +90,8 @@ class DriversMonkey(object):
         MonkeyLog.logcat_analyze(logcatLogFile,logcatFata)
 
         print("---------log analyze finished------------------------------------------------")
+
+
 
 
     def run(self,method=None,ip=None,command=None):
