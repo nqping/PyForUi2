@@ -10,12 +10,15 @@ from Utils.Devices_new import *
 from Utils.Log import Log
 from monkey.monkey import Monkey
 from PageObject.BasePage import BasePage
+import apkutils
 
 
 class DriversInstall(object):
     @staticmethod
     def _install_app(run, apkPath):
         log = Log()
+
+        apk_info = get_apk_info(apkPath)
         base_page = BasePage()
         device = run.get_device()
 
@@ -43,7 +46,16 @@ class DriversInstall(object):
         print('delete apk ...............')
         d.shell(['rm', dst])
 
-
+    @staticmethod
+    def get_apk_info(apkpath):
+        print(apkpath)
+        tmp = apkutils.APK(apkpath).get_manifest()
+        info = {}
+        info['versionCode'] = str(tmp.get('@android:versionCode'))
+        info['versionName'] = str(tmp.get('@android:versionName'))
+        info['package'] = str(tmp.get('@package'))
+        print("安装包信息:%s"%info)
+        return info
 
     def run(self, method=None, ip=None, apkPath=None):
         if method == 'SERVER':
