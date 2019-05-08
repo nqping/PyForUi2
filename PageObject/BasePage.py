@@ -8,6 +8,7 @@
 import os
 import re
 import time
+import apkutils
 
 import uiautomator2 as u2
 from uiautomator2 import UiObjectNotFoundError
@@ -15,7 +16,11 @@ from uiautomator2 import UiObjectNotFoundError
 from Utils.Chromedriver import ChromeDriver
 from Utils import Ports
 from Utils import ReportPath
+from Utils.commonUtils import get_apk_info
+from Utils.Log import Log
 
+
+log = Log()
 
 class BasePage(object):
     @classmethod
@@ -24,6 +29,37 @@ class BasePage(object):
 
     def get_driver(self):
         return self.d
+
+
+
+    @classmethod
+    def local_install(cls,apk_path):
+        '''
+        将本地apk安装包push到设备指定目录,覆盖安装
+        :param apk_path: apk文件本地路径
+        :return:
+        '''
+        apk_info = get_apk_info(apk_path)
+        packagename = apk_info['package']
+        file_name = os.path.basename(apk_path)
+        dst = '/data/local/tmp/' + file_name
+        # log.i('start to install %s', file_name)
+        # print('start to install %s' % file_name)
+        cls.d.push(apk_path, dst)
+        # print('start install %s' % dst)
+        log.i('start install %s ',dst)
+
+        r = cls.d.shell(['pm', 'install', '-r', dst], stream=True)
+        id = r.text.strip()
+        print(time.strftime('%H:%M:%S'), id)
+        packages = list(map(lambda p: p.split(':')[1], cls.d.shell('pm list packages').output.splitlines()))
+        if packagename in packages:
+            cls.d.shell(['rm', dst])
+        else:
+            raise Exception('%s 安装失败' % apk_path)
+
+        return apk_info
+
 
     @classmethod
     def unlock_device(cls):

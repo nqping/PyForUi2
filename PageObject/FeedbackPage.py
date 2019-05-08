@@ -25,4 +25,3 @@ class FeedbackPage(BasePage):
     def submit(self):
         self.d(resourceId="com.tcl.joylockscreen:id/submit").click()
 
-

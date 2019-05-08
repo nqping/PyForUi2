@@ -7,7 +7,7 @@
 import linecache
 import os
 import re
-from Utils.fileUtils import write_file
+from Utils.commonUtils import write_file,write_file_mkdir
 
 keyword=['FATAL EXCEPTION','// CRASH:','ANR in']
 
@@ -18,9 +18,10 @@ class MonkeyLog(object):
 
 
     @staticmethod
-    def crash_analyze(logPath,carshFilePath):
-        print('monkey log path:%s'+logPath)
-        print('monkey log analyze file:%s'%carshFilePath)
+    def crash_analyze(logPath=None,crashLogPath=None,model=None,version=None,currentTime=None):
+
+        monkeyCrash = crashLogPath + os.path.sep + model + "_monkeyCrash_" + version + "_"+ currentTime + ".txt"
+
         packagename = [] #包名
 
         lines_name = []
@@ -50,12 +51,12 @@ class MonkeyLog(object):
 
 
         if len(detail) >0:
-            write_file(carshFilePath,detail)
+            write_file_mkdir(crashLogPath,monkeyCrash,detail)
         else:
             print("******未发现CARSH**********")
 
     @staticmethod
-    def logcat_analyze(logPath,rsFilePath):
+    def logcat_analyze(logPath,crashLogPath=None,model=None,version=None,currentTime=None):
         '''
         分析logcat命令产生的日志
         :param logPath: logcat日志路径
@@ -65,6 +66,8 @@ class MonkeyLog(object):
         crashType=""
         crashCount=0
         crashDetail=[]
+
+        logcatCrash= crashLogPath + os.path.sep + model + "_logcatCrash_" + version + "_" + currentTime + ".txt"
 
         with open(logPath,'r',encoding='utf-8') as data:
             lines = data.readlines()
@@ -84,7 +87,7 @@ class MonkeyLog(object):
 
             # 将carsh日志写入文件
             if len(crashDetail) > 0 :
-                write_file(rsFilePath,crashDetail)
+                write_file_mkdir(crashLogPath,logcatCrash,crashDetail)
             else:
                 print("******logcat日志未发现CARSH***********")
 

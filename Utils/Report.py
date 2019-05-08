@@ -72,18 +72,32 @@ def create_statistics_report(runs):
     print('Generate statistics report completed........ ')
 
 
-def backup_report():
+def backup_report(report_path, backup_path, time):
     '''备份旧报告 TestReport文件夹'''
-    if not os.path.exists("./TestReport_backup"):
-        os.mkdir("./TestReport_backup")
-    if not os.path.exists("./TestReport"):
-        os.mkdir("./TestReport")
-    date_time = time.strftime('%Y-%m-%d_%H_%M_%S', time.localtime(time.time()))
-    try:
-        os.rename('./TestReport', './TestReport_backup/Backup_' + date_time)
-    except PermissionError as e:
-        raise e
-    print('Backup TestReport dir success')
+    if not os.path.exists(backup_path):
+        os.mkdir(backup_path)
+    if not os.path.exists(report_path):
+        pass
+    else:
+        try:
+            os.rename(report_path, os.path.join(backup_path, 'Report_' + time))
+        except PermissionError as e:
+            raise e
+        print('Backup TestReport dir success')
+
+
+# def backup_report():
+#     '''备份旧报告 TestReport文件夹'''
+#     if not os.path.exists("./TestReport_backup"):
+#         os.mkdir("./TestReport_backup")
+#     if not os.path.exists("./TestReport"):
+#         os.mkdir("./TestReport")
+#     date_time = time.strftime('%Y-%m-%d_%H_%M_%S', time.localtime(time.time()))
+#     try:
+#         os.rename('./TestReport', './TestReport_backup/Backup_' + date_time)
+#     except PermissionError as e:
+#         raise e
+#     print('Backup TestReport dir success')
 
 
 def zip_report():

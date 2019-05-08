@@ -10,6 +10,9 @@ from Utils.Decorator import *
 
 class ScreenLockPage(BasePage):
 
+
+    dict = {}
+
     @teststep
     def wait_page(self):
         try:
@@ -57,13 +60,13 @@ class ScreenLockPage(BasePage):
 
     @teststep
     def screen_swipe_up(self):
-        self.swipe_up()
+        self.swipe_up(element=self.d(resourceId="com.tcl.joylockscreen:id/keyguard_bottom_area"),steps=0.2)
 
     @teststep
     def unlock_pattern(self,*number):
         dict = {}
         pointList = []
-        self.d(className="android.view.ViewGroup").wait(timeout=10)
+        # self.d(className="android.view.ViewGroup").wait(timeout=10)
         for elem in self.d.xpath("//android.view.ViewGroup/android.widget.ImageView").all():
             index = elem.attrib.get("index")
             position = elem.center()
@@ -78,7 +81,8 @@ class ScreenLockPage(BasePage):
 
     @teststep
     def pin_click(self):
-        self.d(text=u"PIN").click()
+        self.d(text=u"PIN").click(timeout=10)
+
 
     @teststep
     def draw_pin(self,*number):
@@ -95,7 +99,6 @@ class ScreenLockPage(BasePage):
 
     @teststep
     def unlock_pin(self,*number):
-        self.d(className="android.view.ViewGroup").wait(timeout=10)
         dict = ScreenLockPage().getPinLockid()
         pointList = []
         for i in number:
@@ -107,10 +110,12 @@ class ScreenLockPage(BasePage):
     @classmethod
     def getPinLockid(self):
         """ 拼接Pin顺序"""
+        self.d(className="android.view.ViewGroup").wait(timeout=5)
         dict = {}
         for elem in self.d.xpath("//android.view.ViewGroup/android.widget.ImageView").all():
             index = elem.attrib.get("index")
             position = elem.center()
+            print(position)
             index = int(index)+1
             if index == 2:
                 dict.update({4: position})
@@ -132,6 +137,14 @@ class ScreenLockPage(BasePage):
                 dict.update({index: position})
 
         return dict
+
+    @teststep
+    def swipe_look(self):
+        self.d(text=u"Swipe").click(timeout=5)
+
+    @teststep
+    def back(self):
+        self.d(resourceId="com.tcl.joylockscreen:id/iv_back").click(timeout=5)
 
 
 

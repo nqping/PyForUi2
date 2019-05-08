@@ -6,12 +6,14 @@
 # @desc    :
 
 from ftplib import FTP
+from Utils.Log import Log
 import os
 
 host = "10.128.208.198"
 port=2121
 username = "anonymous"
 password = "tcl@1234"
+
 
 def connectFTP():
     ftp = FTP()  # 实例化FTP对象

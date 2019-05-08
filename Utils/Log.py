@@ -7,7 +7,7 @@
 
 import logging
 
-class Log(object):
+class Log:
     @classmethod
     def set_logger(cls, udid, file):
         logger = logging.getLogger('ATX')
