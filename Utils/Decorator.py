@@ -14,6 +14,7 @@ from Utils.ReportPath import ReportPath
 
 flag = 'IMAGE:'
 log = Log()
+# log = Log().set_logger('udid', './log.log')
 
 def _screenshot(name):
     date_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
