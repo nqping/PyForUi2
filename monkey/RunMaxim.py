@@ -12,7 +12,6 @@ class RunMaxim:
         today = time.strftime('%Y%m%d', time.localtime(time.time()))
         self.test_report_root = os.path.join('F:\\mibctestFTP\\monkeyLog',today)
         packagename = apkinfo['package']
-        print("******************************")
 
         self.device = device
 
