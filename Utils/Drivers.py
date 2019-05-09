@@ -20,8 +20,8 @@ from Public.adbCommand import get_pid,kill_process
 from Utils.MonkeyLogAnalyze import MonkeyLog
 
 
-def check_devives(method=None):
-    # 根据method 获取android设备
+def check_devives(method='USB',devices_input=None):
+    # 根据devices_input 获取android设备
     # method = ReadConfig().get_method().strip()
     if method == 'SERVER':
         # get ATX-Server Online devices
@@ -36,8 +36,15 @@ def check_devives(method=None):
         print('\nThere has %s  devices alive in config IP list' % len(devices))
     elif method == 'USB':
         # get  devices connected PC with USB
-        print('Checking available USB devices connected on PC... ')
-        devices = connect_devices()
+
+        if len(devices_input):
+            print('Console input devices....')
+            devices = connect_devices_input(devices_input)
+
+        else:
+            print('Checking available USB devices connected on PC... ')
+            devices = connect_devices()
+
         print('\nThere has %s  USB devices alive ' % len(devices))
 
     else:
@@ -233,14 +240,10 @@ class Drivers:
             log.e('AssertionError, %s', e)
 
 
-    def run_maxim(self,cases=None,devices=None,command=None,apkinfo=None,actions=None,widget_black=False):
+    def run_maxim(self,cases=None,devices_input=None,command=None,apkinfo=None,actions=None,widget_black=False):
         # start_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
-        print(devices)
-        #未指定设备时,自动获取全部设备
-        if not devices:
-            print('devices is null ')
-            devices = check_devives(method="USB")
+        devices = check_devives(devices_input=devices_input)
 
         if not devices:
             print('There is no device found,test over.')

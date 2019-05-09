@@ -43,15 +43,12 @@ class BasePage(object):
         packagename = apk_info['package']
         file_name = os.path.basename(apk_path)
         dst = '/data/local/tmp/' + file_name
-        # log.i('start to install %s', file_name)
-        # print('start to install %s' % file_name)
         cls.d.push(apk_path, dst)
-        # print('start install %s' % dst)
         log.i('start install %s ',dst)
 
         r = cls.d.shell(['pm', 'install', '-r', dst], stream=True)
         id = r.text.strip()
-        log.i('install Startup time',time.strftime('%H:%M:%S'), id)
+        log.i('install Startup time %s %s'%(time.strftime('%H:%M:%S'), id))
         packages = list(map(lambda p: p.split(':')[1], cls.d.shell('pm list packages').output.splitlines()))
         if packagename in packages:
             cls.d.shell(['rm', dst])
