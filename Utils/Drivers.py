@@ -234,10 +234,12 @@ class Drivers:
 
 
     def run_maxim(self,cases=None,devices=None,command=None,apkinfo=None,actions=None,widget_black=False):
-        start_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+        # start_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
+        print(devices)
         #未指定设备时,自动获取全部设备
         if not devices:
+            print('devices is null ')
             devices = check_devives(method="USB")
 
         if not devices:

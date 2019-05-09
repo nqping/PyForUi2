@@ -8,6 +8,7 @@
 import subprocess
 import argparse
 import unittest
+import os
 
 import uiautomator2 as u2
 from monkey.Drivers_monkey import DriversMonkey
@@ -49,7 +50,7 @@ if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(ParametrizedTestCase.parametrize(myCase,apkPath))
 
-
+    print("------------------------")
     # suite.addTest(myCase('test_install_login'))
 
     # method='USB'
