@@ -36,6 +36,7 @@ if __name__ == '__main__':
     print('devices: %s',devices)
     print('ftp: %s',ftpPath)
     print('command: %s',command)
+
     # ftpDst = '//JoyLauncher-GP-Master'
     # ftpPath = '//AGL Video/'
 
