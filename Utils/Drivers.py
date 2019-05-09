@@ -195,7 +195,6 @@ class Drivers:
                 time.sleep(30)
                 try:
                     m_session = base_page.d.session('com.android.commands.monkey', attach=True)
-                    print(m_session._pid)
                     if m_session._pid:
                         continue
                     else:
