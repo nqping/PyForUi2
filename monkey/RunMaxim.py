@@ -7,11 +7,10 @@ import unittest
 class RunMaxim:
     def __init__(self, device=None,apkinfo=None):
         # self.log_dir = 'F:\\mibctestFTP\\monkeyLog'
-        self.test_report_root = './MaximReport'
+        # self.test_report_root = './MaximReport'
 
         today = time.strftime('%Y%m%d', time.localtime(time.time()))
-        # self.test_report_root = os.path.join('F:\\mibctestFTP\\monkeyLog',today)
-        self.test_report_path = os.path.join(self.test_report_path,today)
+        self.test_report_root = os.path.join('F:\\mibctestFTP\\monkeyLog',today)
         packagename = apkinfo['package']
 
         self.device = device
