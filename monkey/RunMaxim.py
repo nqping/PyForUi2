@@ -9,6 +9,7 @@ class RunMaxim:
         # self.log_dir = 'F:\\mibctestFTP\\monkeyLog'
         self.test_report_root = './MaximReport'
 
+
         #判断目录是否存在
         if not os.path.exists(self.test_report_root):
             os.mkdir(self.test_report_root)
