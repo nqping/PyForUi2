@@ -11,7 +11,7 @@ class RunMaxim:
 
         #判断目录是否存在
         if not os.path.exists(self.test_report_root):
-            os.mkdir(self.test_report_path)
+            os.mkdir(self.test_report_root)
 
         today = time.strftime('%Y%m%d', time.localtime(time.time()))
         self.test_report_root = os.path.join(self.test_report_root,today)
