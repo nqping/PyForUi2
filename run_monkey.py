@@ -39,9 +39,9 @@ if __name__ == '__main__':
     ftpPath = os.environ["ftp_path"]
     command = os.environ["command"]
 
-    print(tempDevices)
-    print(ftpPath)
-    print(command)
+    print("******tempDevices %s :"%tempDevices)
+    print("*******ftpPath %s :" %ftpPath)
+    print("****** command %s : " %command)
 
     devices = []
     if tempDevices:
