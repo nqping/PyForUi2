@@ -21,27 +21,27 @@ from Utils.Log import Log
 
 if __name__ == '__main__':
     # log = Log()
-    # ap = argparse.ArgumentParser()
-    # ap.add_argument("-d", "--devices", required=False, help="devices")
-    # ap.add_argument("-c","--command",required=False, help="command")
-    # ap.add_argument("-f","--ftp",required=True, help="ftp")
-    # args = vars(ap.parse_args())
-    # tempDevices = args['devices']
-    # command = args['command']
-    # ftpPath = args['ftp']
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-d", "--devices", required=False, help="devices")
+    ap.add_argument("-c","--command",required=False, help="command")
+    ap.add_argument("-f","--ftp",required=True, help="ftp")
+    args = vars(ap.parse_args())
+    tempDevices = args['devices']
+    command = args['command']
+    ftpPath = args['ftp']
 
 
 
     # ftpPath = '//AGL Video/'
 
 
-    tempDevices = os.environ["devices"]
-    ftpPath = os.environ["ftp_path"]
-    command = os.environ["command"]
-
-    print("******tempDevices %s :"%tempDevices)
-    print("*******ftpPath %s :" %ftpPath)
-    print("****** command %s : " %command)
+    # tempDevices = os.environ["devices"]
+    # ftpPath = os.environ["ftp_path"]
+    # command = os.environ["command"]
+    #
+    # print("******tempDevices %s :"%tempDevices)
+    # print("*******ftpPath %s :" %ftpPath)
+    # print("****** command %s : " %command)
 
     devices = []
     if tempDevices:
