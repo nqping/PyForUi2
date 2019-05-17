@@ -21,20 +21,31 @@ from Utils.Log import Log
 
 if __name__ == '__main__':
     # log = Log()
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-d", "--devices", required=False, help="devices")
-    ap.add_argument("-c","--command",required=False, help="command")
-    ap.add_argument("-f","--ftp",required=True, help="ftp")
-    args = vars(ap.parse_args())
-    tempDevices = args['devices']
-    command = args['command']
-    ftpPath = args['ftp']
+    # ap = argparse.ArgumentParser()
+    # ap.add_argument("-d", "--devices", required=False, help="devices")
+    # ap.add_argument("-c","--command",required=False, help="command")
+    # ap.add_argument("-f","--ftp",required=True, help="ftp")
+    # args = vars(ap.parse_args())
+    # tempDevices = args['devices']
+    # command = args['command']
+    # ftpPath = args['ftp']
 
-    devices=[]
-    if tempDevices:
-        devices = tempDevices.split(',')
+
 
     # ftpPath = '//AGL Video/'
+
+
+    tempDevices = os.environ("devices")
+    ftpPath = os.environ("ftp_path")
+    command = os.environ("command")
+
+    print(tempDevices)
+    print(ftpPath)
+    print(command)
+
+    devices = []
+    if tempDevices:
+        devices = tempDevices.split(',')
 
     localPath = 'F:\\mibctestFTP\\download'
 
