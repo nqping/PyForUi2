@@ -215,6 +215,11 @@ class Drivers:
 
             log.i('anrpath==%s '%anrPath)
 
+
+            if not os.path.exists(anrPath):
+                os.mkdir(anrPath)
+
+
             anrCmd = 'adb pull /data/anr %s' %anrPath
             subprocess.Popen(anrCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             log.i('pull /data/anr logs success')
