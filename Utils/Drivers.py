@@ -220,7 +220,7 @@ class Drivers:
                 os.mkdir(anrPath)
 
 
-            anrCmd = 'adb pull /data/anr %s' %anrPath
+            anrCmd = 'adb -s %s pull /data/anr %s' %(serial,anrPath)
             subprocess.Popen(anrCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             log.i('pull /data/anr logs success')
 
