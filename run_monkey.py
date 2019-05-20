@@ -30,10 +30,7 @@ if __name__ == '__main__':
     # command = args['command']
     # ftpPath = args['ftp']
 
-
-
     # ftpPath = '//AGL Video/'
-
 
     tempDevices = os.environ["devices"]
     ftpPath = os.environ["ftp_path"]
