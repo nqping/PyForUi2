@@ -211,7 +211,11 @@ class Drivers:
             # base_page.d.pull('/data/anr/',run.get_path()+"\\")
             # base_page.d.shell('adb pull /data/anr %s '%run.get_path())
 
-            anrCmd = 'adb pull /data/anr %s' %run.get_path()
+            anrPath = os.path.join(run.get_path(),model)
+
+            log.i('anrpath==%s '%anrPath)
+
+            anrCmd = 'adb pull /data/anr %s' %anrPath
             subprocess.Popen(anrCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             log.i('pull /data/anr logs success')
 
