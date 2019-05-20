@@ -47,8 +47,9 @@ class BasePage(object):
         log.i('start install %s ',dst)
 
         r = cls.d.shell(['pm', 'install', '-r', dst], stream=False,timeout=60)
-        id = r.text.strip()
-        log.i('install Startup time %s %s'%(time.strftime('%H:%M:%S'), id))
+        print('*****'+r)
+        # id = r.text.strip()
+        # log.i('install Startup time %s %s'%(time.strftime('%H:%M:%S'), id))
         packages = list(map(lambda p: p.split(':')[1], cls.d.shell('pm list packages').output.splitlines()))
         if packagename in packages:
             cls.d.shell(['rm', dst])
