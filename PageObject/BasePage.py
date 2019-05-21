@@ -44,9 +44,10 @@ class BasePage(object):
         file_name = os.path.basename(apk_path)
         dst = '/data/local/tmp/' + file_name
         cls.d.push(apk_path, dst)
-        log.i('start install %s ',dst)
-
         cls.d.shell(['pm', 'install', '-r', dst], stream=False,timeout=120)
+        log.i('start install %s ', dst)
+        time.sleep(60)
+
         # id = r.text.strip()
         # log.i('install Startup time %s %s'%(time.strftime('%H:%M:%S'), id))
         packages = list(map(lambda p: p.split(':')[1], cls.d.shell('pm list packages').output.splitlines()))
