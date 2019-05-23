@@ -37,8 +37,9 @@ if __name__ == '__main__':
     try:
         tempDevices = os.environ["devices"]
     except:
-        raise Exception('devices is null ')
         tempDevices = []
+        raise Exception('devices is null ')
+
     ftpPath = os.environ["ftp_path"]
     command = os.environ["command"]
 
@@ -47,7 +48,7 @@ if __name__ == '__main__':
     print("****** command %s : " %command)
 
     devices = []
-    if tempDevices:
+    if not tempDevices:
         devices = tempDevices.split(',')
 
     localPath = 'F:\\mibctestFTP\\download'
