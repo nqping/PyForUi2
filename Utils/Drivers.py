@@ -225,7 +225,7 @@ class Drivers:
             log.i('pull /data/anr logs success')
 
             # 跑完monkey分析日志
-            crashLogPath = os.path.join(run.get_path(),'Carsh')
+            crashLogPath = os.path.join(run.get_path(),'Crash')
 
             MonkeyLog.crash_analyze(monkeyFile, crashLogPath,model,versionname,currentTime)
             MonkeyLog.logcat_analyze(logcatFile, crashLogPath,model,versionname,currentTime)
