@@ -38,7 +38,7 @@ if __name__ == '__main__':
         tempDevices = os.environ["devices"]
     except:
         tempDevices = []
-        raise Exception('devices is null ')
+        # raise Exception('devices is null ')
 
     ftpPath = os.environ["ftp_path"]
     command = os.environ["command"]
