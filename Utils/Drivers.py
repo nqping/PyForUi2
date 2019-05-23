@@ -37,7 +37,7 @@ def check_devives(method='USB',devices_input=None):
     elif method == 'USB':
         # get  devices connected PC with USB
 
-        if len(devices_input):
+        if len(devices_input) > 0:
             print('Console input devices....')
             devices = connect_devices_input(devices_input)
 
