@@ -32,7 +32,13 @@ if __name__ == '__main__':
 
     # ftpPath = '//AGL Video/'
 
-    tempDevices = os.environ["devices"]
+
+
+    try:
+        tempDevices = os.environ["devices"]
+    except:
+        raise Exception('devices is null ')
+        tempDevices = []
     ftpPath = os.environ["ftp_path"]
     command = os.environ["command"]
 
