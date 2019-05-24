@@ -228,7 +228,7 @@ class Drivers:
             crashLogPath = os.path.join(run.get_path(),'Crash')
 
             MonkeyLog.crash_analyze(monkeyFile, crashLogPath,model,versionname,currentTime)
-            MonkeyLog.logcat_analyze(logcatFile, crashLogPath,model,versionname,currentTime)
+            # MonkeyLog.logcat_analyze(logcatFile, crashLogPath,model,versionname,currentTime)
 
 
 
