@@ -5,8 +5,7 @@
 # @File    : MonkeyLogAnalyze.py
 # @desc    : Monkey日志分析
 import linecache
-import os
-import re
+import os,re
 from Utils.commonUtils import write_file,write_file_mkdir
 
 keyword=['FATAL EXCEPTION','// CRASH:','ANR in']
@@ -22,38 +21,20 @@ class MonkeyLog(object):
 
         monkeyCrash = crashLogPath + os.path.sep + model + "_monkeyCrash_" + version + "_"+ currentTime + ".txt"
 
-        packagename = [] #包名
+        try:
+            fp = open(logPath, 'r')
+            data = fp.read();
+            #正则表达式过滤crash日志
+            crash_block = re.compile(r'^// CRASH:.*?^\//\s+^// backtrace:.*?^\//\s$', re.MULTILINE | re.DOTALL)
+            crash_detail = crash_block.findall(data)
 
-        lines_name = []
-        lines_message = []
-        endline_name=[]
-        crashType=[]
+            if len(crash_detail) > 0:
+                write_file_mkdir(crashLogPath, monkeyCrash, crash_detail)
+            else:
+                print("******未发现CARSH**********")
+        except Exception as e:
+            print(e)
 
-        data = linecache.getlines(logPath)
-        detail = []  # crash详情
-        for row, line in enumerate(data, 1):
-
-            if line.startswith(r'// CRASH:'):
-                lines_name.append(row)
-                detail.append("===========================================================\n")
-                detail.append(line)
-                detail.append(data[row + 1])
-                detail.append(data[row + 2])
-                detail.append(data[row + 3])
-                detail.append(data[row + 4])
-                detail.append(data[row + 5])
-                packagename.append(line.split(' ')[2].replace('\n', ''))
-            if line.startswith(r'// Long Msg:'):
-                crashType.append(' '.join(line.split(' ')[3:]).replace('\n', ''))
-
-            if line.startswith(r'// 	at '):
-                detail.append(line)
-
-
-        if len(detail) >0:
-            write_file_mkdir(crashLogPath,monkeyCrash,detail)
-        else:
-            print("******未发现CARSH**********")
 
     @staticmethod
     def logcat_analyze(logPath,crashLogPath=None,model=None,version=None,currentTime=None):
@@ -94,10 +75,11 @@ class MonkeyLog(object):
 
 
 if __name__=='__main__':
+    pass
 
 
     # logcat_fata_analyze("f:\\temp\\monkeylog.txt")
-    MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\20190312\\5052D_Monkey_170206.txt",'F:\\mibctestFTP\\monkeyLog\\20190312\\monkeyCrash.txt')
+    MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\monkeylog.txt",'F:\\temp\\','5045D','201-21','1111')
     # dna = 'GTGTAATGCGAGAGAGAGAGAAGTGCTGTGTAGCTGATGCGCTAGTTTCGCGCTAGAGAGTGTAAAATTGGAGAGTGTAGTAGTGTA'
     # motif = 'GTGTA'
     # l = []
