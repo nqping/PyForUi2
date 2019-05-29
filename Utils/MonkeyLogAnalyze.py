@@ -25,7 +25,7 @@ class MonkeyLog(object):
             fp = open(logPath, 'r')
             data = fp.read();
             #正则表达式过滤crash日志
-            crash_block = re.compile(r'^// CRASH:.*?^\//\s+^// backtrace:.*?^\//\s$', re.MULTILINE | re.DOTALL)
+            crash_block = re.compile(r'^// CRASH:.*?^\//\s+^// backtrace:.*?^\//\s+^ANR in.*?\//\s$', re.MULTILINE | re.DOTALL)
             crash_detail = crash_block.findall(data)
 
             if len(crash_detail) > 0:
