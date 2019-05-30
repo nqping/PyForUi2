@@ -33,17 +33,14 @@ if __name__ == '__main__':
     # ftpPath = '//AGL Video/'
 
     devices = []
+    ftpPath = os.environ["ftp_path"]
+    command = os.environ["command"]
+    print("*******ftpPath %s :" % ftpPath)
+    print("****** command %s : " % command)
 
     try:
-
         tempDevices = os.environ["devices"]
-        ftpPath = os.environ["ftp_path"]
-        command = os.environ["command"]
-
         print("******tempDevices %s :" % tempDevices)
-        print("*******ftpPath %s :" % ftpPath)
-        print("****** command %s : " % command)
-
         if tempDevices:
             devices = tempDevices.split(',')
 
