@@ -251,7 +251,7 @@ class Drivers:
 
     def run_maxim(self,cases=None,devices_input=None,command=None,apkinfo=None,actions=None,widget_black=False):
         # start_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
-
+        print("---------------------"+devices_input)
         devices = check_devives(devices_input=devices_input)
 
         if not devices:
