@@ -41,7 +41,7 @@ if __name__ == '__main__':
     print("****** command %s : " %command)
 
     devices = []
-    if not tempDevices:
+    if tempDevices:
         devices = tempDevices.split(',')
 
     localPath = 'F:\\mibctestFTP\\download'
