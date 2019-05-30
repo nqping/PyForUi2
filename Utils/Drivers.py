@@ -36,10 +36,8 @@ def check_devives(method='USB',devices_input=None):
         print('\nThere has %s  devices alive in config IP list' % len(devices))
     elif method == 'USB':
         # get  devices connected PC with USB
-        print("****" + devices_input)
         if len(devices_input) > 0:
             print('Console input devices....')
-            print("****"+devices_input)
             devices = connect_devices_input(devices_input)
 
         else:
@@ -251,7 +249,6 @@ class Drivers:
 
     def run_maxim(self,cases=None,devices_input=None,command=None,apkinfo=None,actions=None,widget_black=False):
         # start_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
-        print("---------------------"+devices_input)
         devices = check_devives(devices_input=devices_input)
 
         if not devices:
