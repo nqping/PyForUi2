@@ -85,6 +85,7 @@ def connect_devices():
         return []
 
 def connect_devices_input(serialsList):
+    print("****---------" + serialsList)
     '''get the devices USB connected on PC
     return alive devices'''
     # output = subprocess.check_output(['adb', 'devices'])
