@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
     # command="adb -s %s shell monkey -p com.tcl.demo.lsstestdemo --ignore-crashes --ignore-timeouts --ignore-security-exceptions --monitor-native-crashes -v 10000"
 
-    print('devices='+devices)
+    print('devices:%s '%devices)
 
     Drivers().run_maxim(cases=suite,devices_input=devices,apkinfo=apkinfo,command=command)
     # DriversMonkey().run(method=method,ip=ips,command=command)
