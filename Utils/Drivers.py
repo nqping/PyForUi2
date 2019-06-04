@@ -178,7 +178,9 @@ class Drivers:
             subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             # base_page.d.shell(command)
             #执行logcat命令
-            logcmd = "adb -s %s logcat -v time *:E >%s" % (serial, logcatFile)
+            # logcmd = "adb -s %s logcat -v time *:E >%s" % (serial, logcatFile)
+            logcmd = "adb -s %s logcat -v time AndroidRuntime:* *:E >%s" % (serial, logcatFile)
+
             subprocess.Popen(logcmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             # # base_page.d.shell(logcmd)
@@ -227,7 +229,7 @@ class Drivers:
             crashLogPath = os.path.join(run.get_path(),'Crash')
 
             MonkeyLog.crash_analyze(monkeyFile, crashLogPath,model,versionname,currentTime)
-            # MonkeyLog.logcat_analyze(logcatFile, crashLogPath,model,versionname,currentTime)
+            MonkeyLog.logcat_analyze(logcatFile, crashLogPath,model,versionname,currentTime)
 
 
 

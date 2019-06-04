@@ -8,7 +8,7 @@ import linecache
 import os,re
 from Utils.commonUtils import write_file,write_file_mkdir
 
-keyword=['FATAL EXCEPTION','// CRASH:','ANR in']
+keyword=['FATAL EXCEPTION','// CRASH:','ANR in','Failure starting']
 
 # rsDir = os.path.join(".")
 # tempPath = os.path.join('.',"temp.txt")
@@ -39,9 +39,13 @@ class MonkeyLog(object):
     @staticmethod
     def logcat_analyze(logPath,crashLogPath=None,model=None,version=None,currentTime=None):
         '''
-        分析logcat命令产生的日志
-        :param logPath: logcat日志路径
-        :return: pid,crashType,crashDetail
+
+        :param logPath: 原始日志路径
+        :param crashLogPath: 分析结果路径
+        :param model: 设备型号
+        :param version: 应用版本
+        :param currentTime: 时间戳
+        :return:
         '''
         pid=0;
         crashType=""
@@ -57,10 +61,8 @@ class MonkeyLog(object):
                 if line.find(keyword[0]) >0:
                     crashCount+=1
                     pid = line[line.find("(")+1 : line.find(")")]
-                    # print(pid)
                     line = lines[row+3]
                     crashType=line[line.find('java.lang.'):len(line)]
-                    # print(crashType)
 
             for line in lines:
                 if pid in line:
@@ -77,9 +79,10 @@ class MonkeyLog(object):
 if __name__=='__main__':
     pass
 
+    MonkeyLog.logcat_analyze('F:\\mibctestFTP\\monkeyLog\\Alcatel_5044R_Logcat_v7.0.1.9.0603.1_113325.txt',
+                   'F:\\temp\\','Alcatel_5044R','v7.0.1.9.0603.1','141')
+    # MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\monkeylog.txt",'F:\\temp\\','5045D','201-21','1111')
 
-    # logcat_fata_analyze("f:\\temp\\monkeylog.txt")
-    MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\monkeylog.txt",'F:\\temp\\','5045D','201-21','1111')
     # dna = 'GTGTAATGCGAGAGAGAGAGAAGTGCTGTGTAGCTGATGCGCTAGTTTCGCGCTAGAGAGTGTAAAATTGGAGAGTGTAGTAGTGTA'
     # motif = 'GTGTA'
     # l = []
