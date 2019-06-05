@@ -54,25 +54,46 @@ class MonkeyLog(object):
 
         logcatCrash= crashLogPath + os.path.sep + model + "_logcatCrash_" + version + "_" + currentTime + ".txt"
 
-        with open(logPath,'r',encoding='utf-8') as data:
-            lines = data.readlines()
-            #获取总共多少个crash
-            for row, line in enumerate(lines, 1):
-                if line.find(keyword[0]) >0:
-                    crashCount+=1
-                    pid = line[line.find("(")+1 : line.find(")")]
-                    line = lines[row+3]
-                    crashType=line[line.find('java.lang.'):len(line)]
-
-            for line in lines:
-                if pid in line:
-                    crashDetail.append(line)
+        try:
+            fp = open(logPath, 'rb')
+            data = fp.read();
+            # 正则表达式过滤crash日志
+            crash_block = re.compile(r'.*E/AndroidRuntime.*',re.MULTILINE | re.DOTALL)
+            crashDetail = crash_block.findall(data.decode("utf8", "ignore"))
+            # crashDetail = re.findall(r'(.*E/AndroidRuntime.*)', data.decode("utf8", "ignore"))
 
             # 将carsh日志写入文件
-            if len(crashDetail) > 0 :
-                write_file_mkdir(crashLogPath,logcatCrash,crashDetail)
+            if len(crashDetail) > 0:
+                write_file_mkdir(crashLogPath, logcatCrash, crashDetail)
             else:
                 print("******logcat日志未发现CARSH***********")
+        except Exception as e:
+            print(e)
+
+
+        # with open(logPath,'r',encoding='utf-8') as data:
+        #     lines = data.readlines()
+        #     #获取总共多少个crash
+        #
+        #     crash_block = re.compile(r'^E/AndroidRuntime.*?^\//\s+^// backtrace:.*?^\//\s+^ANR in.*?\//\s$',
+        #                              re.MULTILINE | re.DOTALL)
+        #
+        #     # for row, line in enumerate(lines, 1):
+        #     #     if line.find(keyword[0]) >0:
+        #     #         crashCount+=1
+        #     #         pid = line[line.find("(")+1 : line.find(")")]
+        #     #         line = lines[row+3]
+        #     #         crashType=line[line.find('java.lang.'):len(line)]
+        #     #
+        #     # for line in lines:
+        #     #     if pid in line:
+        #     #         crashDetail.append(line)
+        #
+            # # 将carsh日志写入文件
+            # if len(crashDetail) > 0 :
+            #     write_file_mkdir(crashLogPath,logcatCrash,crashDetail)
+            # else:
+            #     print("******logcat日志未发现CARSH***********")
 
 
 
