@@ -55,12 +55,11 @@ class MonkeyLog(object):
         logcatCrash= crashLogPath + os.path.sep + model + "_logcatCrash_" + version + "_" + currentTime + ".txt"
 
         try:
-            fp = open(logPath, 'rb')
-            data = fp.read();
-            # 正则表达式过滤crash日志
-            crash_block = re.compile(r'.*E/AndroidRuntime.*',re.MULTILINE | re.DOTALL)
-            crashDetail = crash_block.findall(data.decode("utf8", "ignore"))
-            # crashDetail = re.findall(r'(.*E/AndroidRuntime.*)', data.decode("utf8", "ignore"))
+            with open(logPath, 'r',encoding='utf-8') as data:
+                lines = data.readlines()
+                for row, line in enumerate(lines, 1):
+                    if re.findall('AndroidRuntime',line):
+                        crashDetail.append(line)
 
             # 将carsh日志写入文件
             if len(crashDetail) > 0:
@@ -71,37 +70,11 @@ class MonkeyLog(object):
             print(e)
 
 
-        # with open(logPath,'r',encoding='utf-8') as data:
-        #     lines = data.readlines()
-        #     #获取总共多少个crash
-        #
-        #     crash_block = re.compile(r'^E/AndroidRuntime.*?^\//\s+^// backtrace:.*?^\//\s+^ANR in.*?\//\s$',
-        #                              re.MULTILINE | re.DOTALL)
-        #
-        #     # for row, line in enumerate(lines, 1):
-        #     #     if line.find(keyword[0]) >0:
-        #     #         crashCount+=1
-        #     #         pid = line[line.find("(")+1 : line.find(")")]
-        #     #         line = lines[row+3]
-        #     #         crashType=line[line.find('java.lang.'):len(line)]
-        #     #
-        #     # for line in lines:
-        #     #     if pid in line:
-        #     #         crashDetail.append(line)
-        #
-            # # 将carsh日志写入文件
-            # if len(crashDetail) > 0 :
-            #     write_file_mkdir(crashLogPath,logcatCrash,crashDetail)
-            # else:
-            #     print("******logcat日志未发现CARSH***********")
-
-
-
 if __name__=='__main__':
     pass
 
-    MonkeyLog.logcat_analyze('F:\\mibctestFTP\\monkeyLog\\Alcatel_5044R_Logcat_v7.0.1.9.0603.1_113325.txt',
-                   'F:\\temp\\','Alcatel_5044R','v7.0.1.9.0603.1','141')
+    MonkeyLog.logcat_analyze('F:\\mibctestFTP\\monkeyLog\\5008D_Logcat_v7.0.1.9.0605.1_183345.txt',
+                   'F:\\temp\\','test','v7.0.1.9.0603.1','141')
     # MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\monkeylog.txt",'F:\\temp\\','5045D','201-21','1111')
 
     # dna = 'GTGTAATGCGAGAGAGAGAGAAGTGCTGTGTAGCTGATGCGCTAGTTTCGCGCTAGAGAGTGTAAAATTGGAGAGTGTAGTAGTGTA'
