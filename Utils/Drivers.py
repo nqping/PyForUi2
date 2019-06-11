@@ -36,6 +36,8 @@ def check_devives(method='USB',devices_input=None):
         print('\nThere has %s  devices alive in config IP list' % len(devices))
     elif method == 'USB':
         # get  devices connected PC with USB
+
+        print('devices len %s'%len(devices_input))
         if len(devices_input) > 0:
             print('Console input devices....')
             devices = connect_devices_input(devices_input)
