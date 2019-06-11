@@ -67,6 +67,8 @@ def connect_devices():
     matches = pattern.findall(output.decode())
     valid_serials = [m[0] for m in matches if m[1] == 'device']
 
+    print('valid_serials=%s'%valid_serials)
+
     if valid_serials:
         print('Start check %s devices connected on PC: ' % len(valid_serials))
         pool = Pool(processes=len(valid_serials))
