@@ -70,12 +70,12 @@ class MonkeyLog(object):
             print(e)
 
 
-if __name__=='__main__':
-    pass
-
-    MonkeyLog.logcat_analyze('F:\\mibctestFTP\\monkeyLog\\5008D_Logcat_v7.0.1.9.0605.1_183345.txt',
-                   'F:\\temp\\','test','v7.0.1.9.0603.1','141')
-    # MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\monkeylog.txt",'F:\\temp\\','5045D','201-21','1111')
+# if __name__=='__main__':
+#     pass
+#
+#     MonkeyLog.logcat_analyze('F:\\mibctestFTP\\monkeyLog\\5059D_RU_Logcat_v7.0.1.9.0611.1.txt',
+#                    'F:\\temp\\','test','v7.0.1.9.0603.1','141')
+#     # MonkeyLog.crash_analyze("F:\\mibctestFTP\\monkeyLog\\monkeylog.txt",'F:\\temp\\','5045D','201-21','1111')
 
     # dna = 'GTGTAATGCGAGAGAGAGAGAAGTGCTGTGTAGCTGATGCGCTAGTTTCGCGCTAGAGAGTGTAAAATTGGAGAGTGTAGTAGTGTA'
     # motif = 'GTGTA'
