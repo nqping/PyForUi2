@@ -64,7 +64,7 @@ def http_downloadFile(locatpath,url):
     print(dir)
     rs = requests.get(dir,verify=False).text
     apk_name = re.findall(r'<a.*?href="([^"].*\.apk)"', rs)
-    full_url = '%s%s'%(dir,str(apk_name))
+    full_url = '%s%s'%(dir,str(apk_name[0]))
     print('目标apk %s:' % full_url)
 
     #判断本地目标目录是否存在
@@ -73,7 +73,7 @@ def http_downloadFile(locatpath,url):
     else:
         os.makedirs(locatpath)
 
-    locatpath = os.path.join(locatpath, str(apk_name))
+    locatpath = os.path.join(locatpath, str(apk_name[0]))
     print('本地路径 %s:'%locatpath)
 
     r = requests.get(full_url,verify=False)
