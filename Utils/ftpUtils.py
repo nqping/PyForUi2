@@ -18,7 +18,7 @@ username = "anonymous"
 password = "tcl@1234"
 
 # log = Logger(logger='NetworkingProtocol').getlog()
-log = Log()
+
 
 def connectFTP():
     ftp = FTP()  # 实例化FTP对象
@@ -47,6 +47,8 @@ def ftp_downloadFile(locatpath,romatepath):
 
 
 def http_downloadFile(locatpath,url):
+    print(url)
+    print(locatpath)
     '''
     http协议下载文件
     :param locatpath: 本地存储路径
@@ -59,11 +61,11 @@ def http_downloadFile(locatpath,url):
     list = re.findall(r'<a.*?href="([^"]*)".*?>', rs)
     list.reverse() #反转
     dir = '%s%s' % (url, list[0])
-    log.i(dir)
+    print(dir)
     rs = requests.get(dir,verify=False).text
     apk_name = re.findall(r'<a.*?href="([^"].*\.apk)"', rs)
     full_url = '%s%s'%(dir,str(apk_name))
-    log.i('目标apk %s:' % full_url)
+    print('目标apk %s:' % full_url)
 
     #判断本地目标目录是否存在
     if os.path.isdir(locatpath):
