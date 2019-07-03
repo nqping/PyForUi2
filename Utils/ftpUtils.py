@@ -73,8 +73,8 @@ def http_downloadFile(locatpath,url):
     else:
         os.makedirs(locatpath)
 
-    locatpath = os.path.join(locatpath, apk_name[0])
-    log.i('本地路径 %s:'%locatpath)
+    locatpath = os.path.join(locatpath, str(apk_name))
+    print('本地路径 %s:'%locatpath)
 
     r = requests.get(full_url,verify=False)
     with open(locatpath,'wb') as data:
