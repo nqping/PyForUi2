@@ -59,9 +59,10 @@ def http_downloadFile(locatpath,url):
     list = re.findall(r'<a.*?href="([^"]*)".*?>', rs)
     list.reverse() #反转
     dir = '%s%s' % (url, list[0])
+    log.i(dir)
     rs = requests.get(dir,verify=False).text
     apk_name = re.findall(r'<a.*?href="([^"].*\.apk)"', rs)
-    full_url = '%s%s'%(dir,apk_name[0])
+    full_url = '%s%s'%(dir,str(apk_name))
     log.i('目标apk %s:' % full_url)
 
     #判断本地目标目录是否存在
