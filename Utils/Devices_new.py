@@ -130,6 +130,7 @@ def check_alive(device):
     else:
         print('device===%s'%device)
         d = u2.connect(device)
+        print('model----%s'%d.device_info['model'])
         if d.agent_alive:
             print('-----------------')
             d.healthcheck()
