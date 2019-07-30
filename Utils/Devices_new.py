@@ -128,8 +128,10 @@ def check_alive(device):
             print('The device atx_agent %s  is not alive,please checkout!' % device['udid'])
             return None
     else:
+        print('device===%s'%device)
         d = u2.connect(device)
         if d.agent_alive:
+            print('-----------------')
             d.healthcheck()
             if d.alive:
                 if re.match(r"(\d+\.\d+\.\d+\.\d)", device):
